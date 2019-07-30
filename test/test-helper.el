@@ -50,6 +50,11 @@
   (setq jupyter-long-timeout 120
         jupyter-default-timeout 60))
 
+;; For ert-runner
+(when (version<= "27" emacs-version)
+  (defun ert--print-backtrace (backtrace &rest _)
+    (insert (backtrace-to-string backtrace))))
+
 (defvar jupyter-test-with-new-client nil
   "Whether the global client for a kernel should be used for tests.
 Let bind to a non-nil value around a call to
